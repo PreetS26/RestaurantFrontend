@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preet's Restaurant - Table Availability</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2; /* Light gray */
+            color: #333; /* Dark gray */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            padding: 30px;
+            border: 2px solid #333; /* Dark gray */
+            border-radius: 10px;
+            background-color: #fff; /* White */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333; /* Dark gray */
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        label {
+            font-size: 1.2rem;
+            color: #333; /* Dark gray */
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #333; /* Dark gray */
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            background-color: #333; /* Dark gray */
+            color: #fff; /* White */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #666; /* Darker gray */
+        }
+        .table-info {
+            margin-top: 30px;
+            padding: 20px;
+            border: 2px solid #333; /* Dark gray */
+            border-radius: 10px;
+            background-color: #fff; /* White */
+            display: none;
+        }
+        .table-info h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #333; /* Dark gray */
+        }
+        .table-info p {
+            font-size: 1.2rem;
+            color: #333; /* Dark gray */
+        }
+        .restaurant-images {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .restaurant-images img {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Preet's Restaurant</h1>
+        <div class="restaurant-images">
+            <img src="C:\Users\preet\Downloads\preet's resto\grilli-master\assets\images\rest1.jpg" alt="Restaurant Image 1">
+            <img src="C:\Users\preet\Downloads\preet's resto\grilli-master\assets\images\rest2.jpg" alt="Restaurant Image 2">
+        </div>
+        <p>Check table availability and dining capacity:</p>
+        
+        <form id="availabilityForm">
+            <label for="partySize">Enter party size:</label>
+            <br>
+            <input type="number" id="partySize" name="partySize" min="1" required>
+            <br><br>
+            <button type="submit">Check Availability</button>
+        </form>
+
+        <div id="tableAvailability" class="table-info">
+            <h2>Table Availability</h2>
+            <p id="availabilityResult"></p>
+        </div>
+
+        <div class="table-info">
+            <h2>Dining Capacity</h2>
+            <p>Preet's Restaurant has a total dining capacity of 100 guests.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('availabilityForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let partySize = parseInt(document.getElementById('partySize').value);
+            let availableTables = checkTableAvailability(partySize);
+            displayAvailability(availableTables);
+        });
+
+        function checkTableAvailability(partySize) {
+            // Example logic to check table availability
+            // Replace with your actual logic
+            let totalTables = 20; // Example: total number of tables
+            let tablesNeeded = Math.ceil(partySize / 4); // Example: each table seats 4
+            return totalTables >= tablesNeeded;
+        }
+
+        function displayAvailability(available) {
+            let availabilityMessage = available ? 'Tables are available!' : 'Sorry, no tables available for your party size.';
+            document.getElementById('availabilityResult').textContent = availabilityMessage;
+            document.getElementById('tableAvailability').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
